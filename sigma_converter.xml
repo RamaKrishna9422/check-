@@ -1,0 +1,82 @@
+<form script="sigma_input.js" stylesheet="sigma_coverter.css" theme="light">
+  <label>Sigma files converter</label>
+  <fieldset submitButton="false">
+    <input type="text" token="args" depends="$hidden$">
+      <label>field1</label>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <html>
+       <div id="sigma_inputs">
+          <div class="form-group">
+   <!--div class="one"><input type="radio" id="one" class="button-type" value="Select existing File/Directory"/>
+            <label class="button-type">Use existing File/Directory</label></div>
+   <div class="two"> <input type="radio" id="two" class="button-type" value="Import File"/>
+                <label class="button-type">Import File</label></div>
+   <div class="three"><input type="radio" id="three" class="button-type" value="Clone repository"/>
+                <label class="button-type">Clone repository</label></div>
+            <input type="button" class="button-type" value="Use existing File/Directory"/>
+                <input type="button" class="button-type" value="Import File"/>
+                <input type="button" class="button-type" value="Clone repository"/-->
+               <div class="btn-group btn-group-toggle" data-toggle="buttons">
+  <label class="btn btn-secondary button-type active">
+    <!--input type="radio" name="options" class="button-type" id="option1" autocomplete="off"/--> Use existing File/Directory
+  </label>
+  <label class="btn btn-secondary button-type">
+    <!--input type="radio" name="options" class="button-type" id="option2" autocomplete="off"/--> Import File
+  </label>
+  <label class="btn btn-secondary button-type">
+    <!--input type="radio" name="options" class="button-type" id="option3" autocomplete="off"/--> Clone repository
+  </label>
+</div>
+                
+                <div id="select_file"> <label class="file-path-label">Enter File/Directory Location</label>
+            <input type="text" placeholder="File/directory path" class="file-path"/>
+            </div>
+           <div id="import_file"> <label class="file-path-label">Import File</label>
+            <input type="file" name="fileupload" value="fileupload" id="fileupload"/>
+            </div>
+            <div id="git_process">
+            <label class="file-path-lookup">Hostname</label>
+            <input type="text" class="git_url"/>
+             <label class="file-path-lookup">Username</label>
+            <input type="text" class="git_username"/>
+             <label class="file-path-lookup">Password/Token</label>
+            <input type="password" class="git_pwd"/>
+             <label class="file-path-lookup">Group</label>
+            <input type="text" class="git_grp"/>
+             <label class="file-path-lookup">Project</label>
+            <input type="text" class="git_project"/>
+            <button id="clone">Clone</button>
+            </div>
+            </div>
+        </div>
+       <div id="submit_button">
+        
+         <div class="to_table">
+            <input type="checkbox" id="to_table">Show as Table</input>
+          </div>
+           <div class="to_lookup">
+            <input type="checkbox" id="to_lookup">Save as Lookup</input>
+          </div>
+         <button id="convert">Convert</button>
+       </div>
+     </html>
+    </panel>
+  </row>
+  <row depends="$args$">
+    <panel>
+      <title>Sigma file to Splunk Query</title>
+      <table>
+        <search>
+          <query>|sid "$form.args$"</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+</form>
